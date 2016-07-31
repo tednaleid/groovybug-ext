@@ -1,0 +1,44 @@
+buildscript { repositories { jcenter() } }
+
+apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version = 1.0
+group = "groovybug"
+
+repositories {
+  jcenter()
+}
+
+configurations {
+  ivy
+}
+
+dependencies {
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives sourcesJar
+}
+
+publishing {
+  publications {
+    maven(MavenPublication) {
+      groupId 'com.naleid.groovybug'
+      artifactId 'string-ext'
+      from components.java
+
+      artifact sourcesJar
+    }
+  }
+}

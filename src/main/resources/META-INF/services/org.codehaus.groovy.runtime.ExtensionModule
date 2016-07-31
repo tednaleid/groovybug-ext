@@ -1,0 +1,3 @@
+moduleName=string-ext
+moduleVersion=
+extensionClasses=com.naleid.groovybug.StringExtensions
